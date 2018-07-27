@@ -47,6 +47,7 @@ class Event(Component):
                  duration=None,
                  uid=None,
                  description=None,
+                 organizer=None,
                  created=None,
                  location=None,
                  url=None,
@@ -64,6 +65,7 @@ class Event(Component):
             duration (datetime.timedelta)
             uid (string): must be unique
             description (string)
+            oranizer (string)
             created (Arrow-compatible)
             location (string)
             url (string)
@@ -82,6 +84,7 @@ class Event(Component):
         self._begin_precision = None
         self.uid = uid_gen() if not uid else uid
         self.description = description
+        self.organizer = organizer
         self.created = get_arrow(created)
         self.location = location
         self.url = url
@@ -475,6 +478,11 @@ def summary(event, line):
 def description(event, line):
     event.description = unescape_string(line.value) if line else None
 
+@Event._extracts('ORGANIZER')
+def organizer(event, line):
+    print('line {}'.format(line))
+    event.organizer = unescape_string(line.value) if line else None
+
 
 @Event._extracts('LOCATION')
 def location(event, line):
@@ -573,6 +581,11 @@ def o_summary(event, container):
 def o_description(event, container):
     if event.description:
         container.append(ContentLine('DESCRIPTION', value=escape_string(event.description)))
+
+@Event._outputs
+def o_organizer(event, container):
+    if event.organizer:
+        container.append(ContentLine('ORGANIZER', value=escape_string(event.organizer)))
 
 
 @Event._outputs

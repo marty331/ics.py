@@ -75,6 +75,7 @@ class Component(object):
                 multiple=multiple,
                 default=default)
             cls._EXTRACTORS.append(extractor)
+            print('fn = {}'.format(fn))
             return fn
         return decorator
 
