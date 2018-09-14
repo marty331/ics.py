@@ -77,6 +77,7 @@ def get_lines(container, name):
     for i in reversed(range(len(container))):
         item = container[i]
         if item.name == name:
+            print('item {}'.format(item))
             lines.append(item)
             del container[i]
     return lines

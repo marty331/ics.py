@@ -56,6 +56,8 @@ class Component(object):
                     .format(container.name, extractor.type))
 
             if extractor.multiple:
+                print('extractor {}'.format(extractor.multiple))
+                print('lines {}'.format(lines))
                 extractor.function(self, lines)  # Send a list or empty list
             else:
                 if len(lines) == 1:
