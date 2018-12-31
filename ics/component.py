@@ -56,11 +56,13 @@ class Component(object):
                     .format(container.name, extractor.type))
 
             if extractor.multiple:
-                print('extractor {}'.format(extractor.multiple))
-                print('lines {}'.format(lines))
+                print('extractor {}'.format(extractor))
+                print('component 60 lines {}'.format(lines))
                 extractor.function(self, lines)  # Send a list or empty list
             else:
                 if len(lines) == 1:
+                    print('component 64 lines ',lines)
+                    print('component 65 extractor {}'.format(extractor))
                     extractor.function(self, lines[0])  # Send the element
                 else:
                     extractor.function(self, None)  # Send None

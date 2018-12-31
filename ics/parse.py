@@ -58,6 +58,8 @@ class ContentLine:
 
     @classmethod
     def parse(cls, line):
+        print('cls ',cls)
+        print('line ',line)
         if ':' not in line:
             raise ParseError("No ':' in line '{}'".format(line))
 
@@ -73,6 +75,8 @@ class ContentLine:
         params = {}
         for paramstr in params_strings:
             if '=' not in paramstr:
+                print('name ', name)
+                print('paramstr ', paramstr)
                 raise ParseError("No '=' in line '{}'".format(paramstr))
             pname, pvals = paramstr.split('=', 1)
             params[pname] = pvals.split(',')

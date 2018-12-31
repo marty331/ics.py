@@ -433,9 +433,11 @@ class Event(Component):
 # ------------------
 @Event._extracts('DTSTAMP')
 def created(event, line):
+    print('event 436 event {} line {}'.format(event, line))
     if line:
         # get the dict of vtimezones passed to the classmethod
         tz_dict = event._classmethod_kwargs['tz']
+        print('line {}'.format(line))
         event.created = iso_to_arrow(line, tz_dict)
 
 

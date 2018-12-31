@@ -203,6 +203,7 @@ def events(calendar, lines):
     # timezones list
     def event_factory(x):
         return Event._from_container(x, tz=calendar._timezones)
+    print('ical 206 factory {}, lines {}'.format(event_factory, lines))
     calendar.events = list(map(event_factory, lines))
 
 
